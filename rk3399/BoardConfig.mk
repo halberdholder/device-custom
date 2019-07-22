@@ -7,7 +7,7 @@ export RK_UBOOT_DEFCONFIG=rk3399
 # Kernel defconfig
 export RK_KERNEL_DEFCONFIG=rockchip_linux_defconfig
 # Kernel dts
-export RK_KERNEL_DTS=rk3399-sapphire-excavator-linux
+export RK_KERNEL_DTS=rk3399-leez-linux
 # boot image type
 export RK_BOOT_IMG=boot.img
 # kernel image path
@@ -43,6 +43,6 @@ export RK_OEM_DIR=oem_normal
 #userdata config
 export RK_USERDATA_DIR=userdata_normal
 #misc image
-export RK_MISC=wipe_all-misc.img
+export RK_MISC=blank-misc.img
 #choose enable distro module
 export RK_DISTRO_MODULE=
