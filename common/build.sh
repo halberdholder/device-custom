@@ -83,6 +83,37 @@ function build_modules_install()
 	fi
 }
 
+function build_xenomai_install()
+{
+	echo "============Start build xenomai install============"
+	echo "DESTDIR              =$DEST_ROOTFS_DIR"
+	export PATH=$TOP_DIR/prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin:$PATH
+	cd $TOP_DIR/xenomai-3.1 && ./make.sh $DEST_ROOTFS_DIR && cd -
+	if [ $? -eq 0 ]; then
+		echo "====Build xenomai install ok!===="
+	else
+		echo "====Build xenomai install failed!===="
+	fi
+	cat << EOF > ${DEST_ROOTFS_DIR}/etc/profile.d/xenomai.sh
+#fix paths for xenomai
+export XENOMAI_ROOT_DIR=/usr/xenomai
+export XENOMAI_PATH=/usr/xenomai
+export PATH=\$PATH:\$XENOMAI_PATH/bin:\$XENOMAI_PATH/sbin
+export PKG_CONFIG_PATH=\$PKG_CONFIG_PATH:\$XENOMAI_PATH/lib/pkgconfig
+export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$XENOMAI_PATH/lib
+export OROCOS_TARGET=xenomai
+
+#add some aliases convenient for xenomai
+alias xeno-stat="cat /proc/xenomai/sched/stat"
+alias xeno-threads="cat /proc/xenomai/sched/threads"
+alias xeno-rt-threads="cat /proc/xenomai/sched/rt/threads"
+alias xeno-interrupts="cat /proc/xenomai/irq"
+alias xeno-version=/usr/xenomai/sbin/version
+alias xeno-autotune=/usr/xenomai/sbin/autotune
+alias xeno-latency=/usr/xenomai/bin/latenc
+EOF
+}
+
 function build_ubuntu()
 {
 	echo "============Start build ubuntu rootfs============"
@@ -95,6 +126,8 @@ function build_ubuntu()
 	export DEST_ROOTFS_DIR=$TOP_DIR/mkrootfs/output/tmpfs
 
 	build_modules_install
+
+	build_xenomai_install
 
 	cd mkrootfs && ./make.sh finish && cd -
 	if [ $? -eq 0 ]; then
