@@ -13,35 +13,37 @@ export RK_BOOT_IMG=boot.img
 # kernel image path
 export RK_KERNEL_IMG=kernel/arch/arm64/boot/Image
 # parameter for GPT table
-export RK_PARAMETER=parameter-buildroot.txt
+export RK_PARAMETER=parameter-ubuntu.txt
 # Buildroot config
-export RK_CFG_BUILDROOT=rockchip_rk3399
+#export RK_CFG_BUILDROOT=rockchip_rk3399
 # Recovery config
-export RK_CFG_RECOVERY=rockchip_rk3399_recovery
+#export RK_CFG_RECOVERY=rockchip_rk3399_recovery
 # ramboot config
 export RK_CFG_RAMBOOT=
 # Pcba config
-export RK_CFG_PCBA=rockchip_rk3399_pcba
+#export RK_CFG_PCBA=rockchip_rk3399_pcba
 # Build jobs
 export RK_JOBS=12
 # target chip
 export RK_TARGET_PRODUCT=rk3399
+# Make rootfs config
+export RK_ROOTFS_SYSTEM=ubuntu18.04.3
 # Set rootfs type, including ext2 ext4 squashfs
 export RK_ROOTFS_TYPE=ext4
 # yocto machine
-export RK_YOCTO_MACHINE=rockchip-rk3399-sapphire-excavator
+#export RK_YOCTO_MACHINE=rockchip-rk3399-sapphire-excavator
 # rootfs image path
 export RK_ROOTFS_IMG=rockdev/rootfs.${RK_ROOTFS_TYPE}
 # Set oem partition type, including ext2 squashfs
-export RK_OEM_FS_TYPE=ext2
+#export RK_OEM_FS_TYPE=ext2
 # Set userdata partition type, including ext2, fat
-export RK_USERDATA_FS_TYPE=ext2
+#export RK_USERDATA_FS_TYPE=ext2
 # Set flash type. support <emmc, nand, spi_nand, spi_nor>
-export RK_STORAGE_TYPE=emmc
+#export RK_STORAGE_TYPE=emmc
 #OEM config
-export RK_OEM_DIR=oem_normal
+#export RK_OEM_DIR=oem_normal
 #userdata config
-export RK_USERDATA_DIR=userdata_normal
+#export RK_USERDATA_DIR=userdata_normal
 #misc image
 export RK_MISC=blank-misc.img
 #choose enable distro module
